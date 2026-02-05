@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Creative Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;800&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="gradient-bg">
+        <div class="g-blob b1"></div>
+        <div class="g-blob b2"></div>
+        <div class="g-blob b3"></div>
+        <div class="noise-overlay"></div>
+    </div>
+
+    <div class="cursor"></div>
+
+    <nav>
+        <a href="#" class="logo">NOUR<span class="dot">.</span>DEV</a>
+        <div class="nav-items">
+            <a href="#work" class="nav-link">Work</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1 class="glitch-text" data-text="Creative Tech">Creative Tech</h1>
+                <h1 class="sub-line">Enthusiast.</h1>
+                <p>Building vibrant digital ecosystems with<br>code, color, and motion.</p>
+            </div>
+        </section>
+
+     <section id="work">
+    <div class="section-label">Selected Projects</div>
+
+    <div class="project-container">
+        <a href="https://nourmedj.github.io/dantistproject/index1.html" target="_blank" class="project-link" rel="noopener">
+            <div class="project-row" data-color="#00f0ff">
+                <h2>Modern Dental Care</h2>
+                <p>Web Development / Healthcare</p>
+                <div class="hover-reveal-img" style="background-image: url('portimgproj/Capture%20d\'écran%202026-01-14%20185054.png');"></div>
+            </div>
+        </a>
+
+        <a href="https://nourmedj.github.io/travelproject/" target="_blank" class="project-link" rel="noopener">
+            <div class="project-row" data-color="#ff007a">
+                <h2>Travel Explorer</h2>
+                <p>UI Design / Adventure</p>
+                <div class="hover-reveal-img" style="background-image: url('portimgproj/Capture%20d\'écran%202026-02-02%20185930.png');"></div>
+            </div>
+        </a>
+
+        <a href="https://nourmedj.github.io/gymproject/" target="_blank" class="project-link" rel="noopener">
+            <div class="project-row" data-color="#7b2cbf">
+                <h2>Elite Fitness</h2>
+                <p>Frontend / Wellness</p>
+                <div class="hover-reveal-img" style="background-image: url('portimgproj/Capture%20d\'écran%202026-01-14%20221116.png');"></div>
+            </div>
+        </a>
+
+        <a href="https://nourmedj.github.io/lawproject/" target="_blank" class="project-link" rel="noopener">
+            <div class="project-row" data-color="#3a86ff">
+                <h2>Legal Partners</h2>
+                <p>Corporate / Professional Services</p>
+                <div class="hover-reveal-img" style="background-image: url('portimgproj/Capture%20d\'écran%202026-01-14%20183910.png');"></div>
+            </div>
+        </a>
+    </div>
+</section>
+        <section class="ticker-wrap">
+            <div class="ticker">
+                <div class="ticker-item">Javascript - Creative Coding - WebGL - Three.js - UI Design - </div>
+                <div class="ticker-item">Javascript - Creative Coding - WebGL - Three.js - UI Design - </div>
+            </div>
+        </section>
+        <section id="why-me">
+            <div class="grid-container">
+                <div class="col-left">
+                    <h2 class="sticky-title">The <span class="highlight">Hybrid</span><br>Advantage.</h2>
+                </div>
+                <div class="col-right">
+                    <p class="big-text">
+                        Most developers treat design as an afterthought. Most designers fear the console.
+                    </p>
+                    <p class="body-text">
+                        I live in the intersection. I don't just hand off files; I build 
+                        <span class="neon-text">performant</span>, <span class="neon-text">accessible</span>, 
+                        and <span class="neon-text">fluid</span> interfaces that honor the original creative vision.
+                    </p>
+                    
+                    <ul class="stats-list">
+                        <li>
+                            <span>0.1s</span>
+                            <small>Load Time Goal</small>
+                        </li>
+                        <li>
+                            <span>Awwwards</span>
+                            <small>Design Standard</small>
+                        </li>
+                        <li>
+                            <span>100%</span>
+                            <small>Pixel Perfection</small>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+  <footer id="contact">
+    <div class="footer-blobs"></div> 
+    
+   <div class="whatsapp-form-container">
+    <p class="pre-title">Send a Quick Message</p>
+    <div class="wa-form">
+        <textarea id="wa-message" placeholder="Hi Nour, I have a project in mind..."></textarea>
+        <button onclick="sendToWhatsApp()" class="wa-submit-btn">
+            Send via WhatsApp
+            <span class="btn-icon">→</span>
+        </button>
+    </div>
+</div>
+
+    <div class="footer-bottom">
+        <div class="socials">
+            <a href="https://github.com/nourmedj" target="_blank" class="nav-link">GitHub</a>
+            <a href="https://www.instagram.com/medjadjinour2024/" target="_blank" class="nav-link">Instagram</a>
+            <a href="mailto:medjadji.nour.24@gmail.com" class="nav-link">Email Me</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 NOURdev <br> 
+            <span class="location">Based in Algeria • Global Reach</span>
+        </div>
+    </div>
+</footer>
+
+    </main> 
+
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

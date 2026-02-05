@@ -1,0 +1,496 @@
+:root {
+    --bg: #050505;
+    --text: #ffffff;
+    --cyan: #00f0ff;
+    --pink: #ff007a;
+    --purple: #7b2cbf;
+    --font-main: 'Outfit', sans-serif;
+    --blob-size: 60vw;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+}
+
+/* --- ATMOSPHERIC BACKGROUND --- */
+.gradient-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.g-blob {
+    position: absolute;
+    width: var(--blob-size);
+    height: var(--blob-size);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+    animation: move 10s infinite alternate;
+}
+
+.b1 { background: var(--purple); top: -10%; left: -10%; animation-duration: 12s; }
+.b2 { background: var(--cyan); bottom: -10%; right: -10%; animation-duration: 15s; animation-direction: reverse; }
+.b3 { background: var(--pink); top: 40%; left: 40%; width: 40vw; height: 40vw; animation-duration: 20s; }
+
+.noise-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.07;
+}
+
+@keyframes move {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(100px, 50px) scale(1.1); }
+}
+
+/* --- CURSOR --- */
+.cursor {
+    width: 20px; height: 20px;
+    border: 2px solid white;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    transition: transform 0.1s;
+    mix-blend-mode: difference;
+}
+.cursor.hovered {
+    background: white;
+    transform: scale(3);
+    border-color: transparent;
+    mix-blend-mode: exclusion;
+}
+
+/* --- NAV --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5%;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.logo { font-weight: 800; font-size: 1.5rem; text-decoration: none; color: white; }
+.dot { color: var(--pink); }
+
+.nav-link {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    position: relative;
+    transition: 0.3s;
+}
+.nav-link:hover { color: var(--cyan); }
+
+/* --- HERO --- */
+#hero {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.hero-content h1 {
+    font-size: clamp(4rem, 10vw, 8rem);
+    line-height: 0.9;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #fff, #aaa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sub-line {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.hero-content p {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+/* --- PROJECTS --- */
+#work { padding: 5rem 5%; }
+
+.section-label { 
+    margin-bottom: 3rem; 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+    color: var(--cyan);
+}
+
+/* FIX: Ensure the link acts as a container for the row */
+.project-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Critical for layout */
+}
+
+.project-row {
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 4rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: visible; /* Allows image to pop out */
+}
+
+.project-link:last-child .project-row { 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+}
+
+.project-row h2 { 
+    font-size: 3rem; 
+    font-weight: 500; 
+    transition: transform 0.4s ease;
+}
+
+.project-row p { 
+    font-family: 'Space Grotesk', sans-serif; 
+    color: #888; 
+    transition: color 0.4s ease;
+}
+
+/* ENHANCEMENT: Hover Effects */
+.project-row:hover {
+    padding-left: 2rem;
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), transparent);
+}
+
+/* Use the data-color attribute for a subtle glow on hover */
+.project-row:hover h2 {
+    transform: translateX(10px);
+    color: #fff;
+}
+
+/* Reveal Image - Refined */
+.hover-reveal-img {
+    position: absolute;
+    width: 350px; /* Slightly larger for impact */
+    height: 220px;
+    top: 50%;
+    left: 60%; /* Offset to the right so it doesn't cover the text entirely */
+    transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
+    opacity: 0;
+    background-size: cover;
+    background-position: center;
+    pointer-events: none;
+    transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.project-row:hover .hover-reveal-img {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(2deg); /* Switched rotation for flair */
+}
+/* --- MARQUEE --- */
+.ticker-wrap {
+    overflow: hidden;
+    background: var(--cyan);
+    color: black;
+    padding: 1rem 0;
+    transform: rotate(-2deg) scale(1.05);
+    margin-top: 4rem;
+}
+.ticker { display: flex; white-space: nowrap; animation: ticker 20s linear infinite; }
+.ticker-item { font-size: 2rem; font-weight: 800; text-transform: uppercase; padding-right: 2rem; }
+
+@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+
+@media(max-width: 768px) {
+    .project-row h2 { font-size: 1.5rem; }
+    .hover-reveal-img { display: none; }
+}
+
+
+/* --- SECTION: WHY ME --- */
+#why-me {
+    padding: 10rem 5%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+.sticky-title {
+    font-size: 5rem;
+    line-height: 1;
+    position: sticky;
+    top: 100px; /* Sticks as you scroll past the text */
+    height: fit-content;
+}
+
+.highlight {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--pink);
+    font-style: italic;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.big-text {
+    font-size: 2rem;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    color: white;
+}
+
+.body-text {
+    font-size: 1.1rem;
+    color: #888;
+    line-height: 1.8;
+    margin-bottom: 4rem;
+    max-width: 90%;
+}
+
+.neon-text {
+    color: var(--cyan);
+    font-weight: 500;
+}
+
+/* Stats Row */
+.stats-list {
+    display: flex;
+    gap: 4rem;
+    list-style: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+}
+
+.stats-list li span {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--purple);
+}
+
+.stats-list li small {
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #666;
+}
+
+/* --- FOOTER & CONTACT FORM --- */
+footer {
+    padding: 10rem 5% 2rem 5%;
+    position: relative;
+    /* REMOVED solid background to let .gradient-bg show through */
+    background: transparent; 
+    overflow: visible; /* Changed from hidden so glow-effects can breathe */
+}
+
+.whatsapp-form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5; /* Sit above any background elements */
+}
+
+#wa-message {
+    background: rgba(255, 255, 255, 0.02); /* Very slight tint for depth */
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem 1rem;
+    color: #fff;
+    font-family: var(--font-main); 
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    min-height: 120px;
+    resize: none;
+    transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    width: 100%;
+    cursor: none;
+    backdrop-filter: blur(2px); /* Makes the message area feel "glassy" */
+}
+
+#wa-message:focus {
+    outline: none;
+    border-bottom: 2px solid var(--cyan);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.wa-submit-btn {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 1.2rem 3.5rem;
+    font-family: var(--font-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: none;
+    position: relative;
+    transition: 0.3s;
+    margin-top: 3rem;
+}
+
+.wa-submit-btn:hover {
+    background: #fff;
+    color: #000;
+    box-shadow: 4px 4px 0px var(--cyan), -4px -4px 0px var(--pink);
+    transform: translate(3px, 3px);
+}
+
+.footer-bottom {
+    margin-top: 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    background: transparent;
+}
+
+.socials .nav-link {
+    margin-right: 2rem;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.socials .nav-link:hover {
+    color: var(--cyan);
+}
+
+.copyright {
+    text-align: right;
+    color: #444;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+/* --- RESPONSIVE OVERRIDES --- */
+
+/* 1. Fix for Tablets and Phones */
+@media (max-width: 1024px) {
+    :root {
+        --blob-size: 80vw; /* Make blobs larger on smaller screens */
+    }
+
+    /* Enable default cursor on touch devices so links are clickable */
+    * { cursor: auto !important; }
+    .cursor { display: none !important; }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Stack Why Me section */
+        gap: 2rem;
+    }
+
+    .sticky-title {
+        position: relative;
+        top: 0;
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .project-row h2 {
+        font-size: 2rem;
+    }
+}
+
+/* 2. Fix for Mobile Phones */
+@media (max-width: 768px) {
+    nav {
+        padding: 1.5rem 5%;
+    }
+
+    .nav-link {
+        margin-left: 1rem;
+        font-size: 0.8rem;
+    }
+
+    #hero {
+        height: 70vh; /* Shorter hero on mobile */
+    }
+
+    .hero-content h1 {
+        font-size: 3.5rem; /* Smaller, readable title */
+    }
+
+    .project-row {
+        padding: 2.5rem 0;
+        flex-direction: column; /* Stack Title and Category */
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .project-row:hover {
+        padding-left: 1rem; /* Less aggressive hover padding */
+    }
+
+    .hover-reveal-img {
+        display: none !important; /* Hide hover images on touch */
+    }
+
+    .stats-list {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    #wa-message {
+        font-size: 1.2rem; /* Easier to type on mobile keyboards */
+    }
+
+    .wa-submit-btn {
+        width: 100%; /* Full width button for easy tapping */
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+        margin-top: 5rem;
+    }
+
+    .copyright {
+        text-align: left;
+    }
+
+    .socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .socials .nav-link {
+        margin-right: 0;
+    }
+}
+
+/* 3. Handling very small screens */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .ticker-item {
+        font-size: 1.2rem;
+    }
+}
